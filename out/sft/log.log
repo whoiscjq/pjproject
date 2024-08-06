@@ -1,0 +1,34 @@
+[2024-08-06 18:02:48,402][simple_sft.py][INFO] Epoch: [0/10] Step: [0/100] Loss: 1.8145 LR: 0.0000000 Elapsed Time: 0.98s
+[2024-08-06 18:03:12,990][simple_sft.py][INFO] Epoch: [0/10] Step: [50/100] Loss: 0.7185 LR: 0.0000010 Elapsed Time: 25.48s
+[2024-08-06 18:03:52,451][simple_sft.py][INFO] Validation Loss: 10.7521
+[2024-08-06 18:03:52,451][simple_sft.py][INFO] New best validation loss: 10.7521
+[2024-08-06 18:04:00,794][simple_sft.py][INFO] Epoch: [1/10] Step: [0/100] Loss: 0.5871 LR: 0.0000020 Elapsed Time: 0.44s
+[2024-08-06 18:04:25,702][simple_sft.py][INFO] Epoch: [1/10] Step: [50/100] Loss: 0.5250 LR: 0.0000030 Elapsed Time: 25.35s
+[2024-08-06 18:05:05,181][simple_sft.py][INFO] Validation Loss: 9.0032
+[2024-08-06 18:05:05,182][simple_sft.py][INFO] New best validation loss: 9.0032
+[2024-08-06 18:05:13,329][simple_sft.py][INFO] Epoch: [2/10] Step: [0/100] Loss: 0.2888 LR: 0.0000040 Elapsed Time: 0.44s
+[2024-08-06 18:05:38,216][simple_sft.py][INFO] Epoch: [2/10] Step: [50/100] Loss: 0.2289 LR: 0.0000050 Elapsed Time: 25.33s
+[2024-08-06 18:06:17,641][simple_sft.py][INFO] Validation Loss: 8.4238
+[2024-08-06 18:06:17,642][simple_sft.py][INFO] New best validation loss: 8.4238
+[2024-08-06 18:06:25,657][simple_sft.py][INFO] Epoch: [3/10] Step: [0/100] Loss: 0.0946 LR: 0.0000060 Elapsed Time: 0.44s
+[2024-08-06 18:06:50,502][simple_sft.py][INFO] Epoch: [3/10] Step: [50/100] Loss: 0.1128 LR: 0.0000070 Elapsed Time: 25.29s
+[2024-08-06 18:07:29,936][simple_sft.py][INFO] Validation Loss: 9.3550
+[2024-08-06 18:07:30,438][simple_sft.py][INFO] Epoch: [4/10] Step: [0/100] Loss: 0.0572 LR: 0.0000080 Elapsed Time: 0.41s
+[2024-08-06 18:07:55,333][simple_sft.py][INFO] Epoch: [4/10] Step: [50/100] Loss: 0.1195 LR: 0.0000090 Elapsed Time: 25.30s
+[2024-08-06 18:08:34,775][simple_sft.py][INFO] Validation Loss: 8.9664
+[2024-08-06 18:08:35,277][simple_sft.py][INFO] Epoch: [5/10] Step: [0/100] Loss: 0.0813 LR: 0.0000100 Elapsed Time: 0.41s
+[2024-08-06 18:09:00,169][simple_sft.py][INFO] Epoch: [5/10] Step: [50/100] Loss: 0.0972 LR: 0.0000110 Elapsed Time: 25.30s
+[2024-08-06 18:09:39,586][simple_sft.py][INFO] Validation Loss: 9.2048
+[2024-08-06 18:09:40,088][simple_sft.py][INFO] Epoch: [6/10] Step: [0/100] Loss: 0.0643 LR: 0.0000120 Elapsed Time: 0.41s
+[2024-08-06 18:10:04,987][simple_sft.py][INFO] Epoch: [6/10] Step: [50/100] Loss: 0.1119 LR: 0.0000130 Elapsed Time: 25.31s
+[2024-08-06 18:10:44,396][simple_sft.py][INFO] Validation Loss: 10.6421
+[2024-08-06 18:10:44,899][simple_sft.py][INFO] Epoch: [7/10] Step: [0/100] Loss: 0.1081 LR: 0.0000140 Elapsed Time: 0.41s
+[2024-08-06 18:11:09,777][simple_sft.py][INFO] Epoch: [7/10] Step: [50/100] Loss: 0.0979 LR: 0.0000150 Elapsed Time: 25.29s
+[2024-08-06 18:11:49,280][simple_sft.py][INFO] Validation Loss: 9.6731
+[2024-08-06 18:11:49,782][simple_sft.py][INFO] Epoch: [8/10] Step: [0/100] Loss: 0.0524 LR: 0.0000160 Elapsed Time: 0.41s
+[2024-08-06 18:12:14,699][simple_sft.py][INFO] Epoch: [8/10] Step: [50/100] Loss: 0.1234 LR: 0.0000170 Elapsed Time: 25.33s
+[2024-08-06 18:12:54,192][simple_sft.py][INFO] Validation Loss: 8.3865
+[2024-08-06 18:12:54,192][simple_sft.py][INFO] New best validation loss: 8.3865
+[2024-08-06 18:13:02,525][simple_sft.py][INFO] Epoch: [9/10] Step: [0/100] Loss: 0.0899 LR: 0.0000180 Elapsed Time: 0.43s
+[2024-08-06 18:13:27,385][simple_sft.py][INFO] Epoch: [9/10] Step: [50/100] Loss: 0.0997 LR: 0.0000190 Elapsed Time: 25.29s
+[2024-08-06 18:14:06,792][simple_sft.py][INFO] Validation Loss: 11.2012
