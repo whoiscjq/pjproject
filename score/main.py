@@ -31,13 +31,14 @@ questions=[]
 answers=[]
 # print(data)
 for message in data:
-    questions.append([{"role":"system","content": "After generating the answer, you should add '####' and the final number answer at the end (digit only)"},{"role": "user", "content":message["question"]}])
+    questions.append([{"role":"system","content": "After generating the answer, you should add '####' and the final numerical answer at the end (digit only)"},{"role": "user", "content":message["question"]+"Let's think step by step."}])
+    #questions.append([{"role": "user", "content":message["question"]}])
     answers.append(message["answer"])
 
 #print(questions)
 outputs=pipeline(questions,batch_size=4)
 
-output_file="dataset/baseline_output_test.jsonl"
+output_file="dataset/simple_llama_output.jsonl"
 with open(output_file, 'w', encoding='utf-8') as file:
     pass
 
