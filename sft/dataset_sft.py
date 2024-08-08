@@ -29,9 +29,9 @@ class SFTDataset(Dataset):
         self.answer_max_len = answer_max_len
         #
         self.tokenizer = tokenizer
-        self.bos=self.tokenizer.add_bos_token
-        self.eos=self.tokenizer.add_eos_token
-        self.pad=self.tokenizer.add_eos_token#self.tokenizer.special_tokens['<pad>']
+        self.bos=1
+        self.eos=2
+        self.pad=2#self.tokenizer.special_tokens['<pad>']
         
     def __len__(self):
         return self.df.shape[0]
@@ -45,7 +45,7 @@ class SFTDataset(Dataset):
         if len(answer) > self.answer_max_len:
             answer = answer[:self.answer_max_len-2]
         #
-        input_id=prompt+[self.bos]+answer+[self.eos]
+        input_id=prompt+ [self.bos] + answer+[self.eos]
         context_length = len(prompt)
         mask_position = context_length - 1
         pad_len = self.max_length - len(input_id)
@@ -64,7 +64,7 @@ class SFTDataset(Dataset):
 #
 if __name__=="__main__":
     df=jsonl_to_dataframe("dataset/eval.jsonl")
-    tokenizer = AutoTokenizer.from_pretrained("models/internlm2-chat-1_8b_simple_sft", trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained("models/internlm2-chat-1_8b", trust_remote_code=True)
     #model = AutoModelForCausalLM.from_pretrained("models/internlm2-chat-1_8b_simple_sft", trust_remote_code=True)
     train_ds = SFTDataset(df,tokenizer,max_length=512)
     train_loader = torch.utils.data.DataLoader(

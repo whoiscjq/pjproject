@@ -144,10 +144,13 @@ if __name__ == "__main__":
 
     best_val_loss = float('inf')
 
-    df = jsonl_to_dataframe("dataset/eval.jsonl")
+    df1 = jsonl_to_dataframe("dataset/simple_itern_output.jsonl")
+    df2=  jsonl_to_dataframe("dataset/train.jsonl")
+    df= pd.concat([df1,df2],ignore_index=True)
+    df = df.replace("####", "##answer:", regex=True)
     df = df.sample(frac=1.0).reset_index(drop=True)
-    tokenizer = AutoTokenizer.from_pretrained("models/internlm2-chat-1_8b_simple_sft", trust_remote_code=True)
-    model = AutoModelForCausalLM.from_pretrained("models/internlm2-chat-1_8b_simple_sft", trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained("models/internlm2-chat-1_8b", trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained("models/internlm2-chat-1_8b", trust_remote_code=True)
     train_ds = SFTDataset(df, tokenizer, max_length=512)
     train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True)
 

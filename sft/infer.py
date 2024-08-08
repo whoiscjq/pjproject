@@ -5,8 +5,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # 加载经过SFT后的模型和tokenizer
-tokenizer = AutoTokenizer.from_pretrained("models/internlm2-chat-1_8b_simple_sft", trust_remote_code=True)
-model = AutoModelForCausalLM.from_pretrained("models/internlm2-chat-1_8b_simple_sft", trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained("models/internlm2-chat-1_8b", trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained("models/internlm2-chat-1_8b", trust_remote_code=True)
 
 sft_model_path = "/mnt/workspace/llm/out/sft/best.pth"
 model.load_state_dict(torch.load(sft_model_path, map_location=device))
@@ -20,7 +20,7 @@ def generate_response(question, max_length=512):
         attention_mask=inputs.attention_mask, 
         max_length=max_length, 
         num_return_sequences=1, 
-        pad_token_id=tokenizer.eos_token_id
+        pad_token_id=92542
     )
     response = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return response

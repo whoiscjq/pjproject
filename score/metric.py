@@ -6,8 +6,8 @@ def distil(file_name):
     with open(file_name+'.jsonl', 'r', encoding='utf-8') as file:
         for line in file:
             text=json.loads(line.strip())
-            #numbers=re.findall(r'\d+', text["answer"])
-            numbers=re.findall(r'####\s*(\d+)', text["answer"])
+            numbers=re.findall(r'\d+', text["answer"])
+            #numbers=re.findall(r'####\s*(\d+)', text["answer"])
             try:
                 number=numbers[-1].strip()
                 outputs.append(number)
@@ -16,8 +16,9 @@ def distil(file_name):
     return outputs
         
 gt_file="dataset/eval"
-test_file = "/mnt/workspace/llm/dataset/simple_llama_output"
-#test_file="/mnt/workspace/llm/PRP/result/mini_10"
+#test_file = "/mnt/workspace/llm/dataset/prp_llama_output"
+#test_file="dataset/baseline_itern_output"
+test_file="/mnt/workspace/llm/SC/SC_output2"
 gt_numbers=distil(gt_file)
 test_numbers=distil(test_file)
 
