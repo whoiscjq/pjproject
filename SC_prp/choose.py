@@ -5,16 +5,23 @@ from tqdm import tqdm
 
 model_id = "models/Meta-Llama-3.1-8B-Instruct"
 turn_num=3
-output_file="SC/SC_output2"#".jsonl"
+input_file1="SC_prp/data/tmp_first_output.jsonl"
+input_file2="SC_prp/data/tmp_veri_output.jsonl"
+output_file="SC_prp/data/tmp_output.jsonl"
 
-def tp_prompt(q,a,b,c):
+def tp_prompt(q,a1,v1,a2,v2,a3,v3):
     prompt=f'''
     questions:{q}
-    Here are several answers for this question. You should check its verification part to decide whether it is reasonable.
-    1.{a}
-    2.{b}
-    3.{c}
-    You should check its verification part to decide whether it is reasonable. After that, you should only output add '##answer:' and the most reasonable final numerical answer at the end (digit only), for example(##answer: 5). Do not ouput anything else.
+    Here are several answers and verfication for this question. 
+    1.answer: <{a1}>
+    verification: <{v1}>
+    2.answer: <{a2}>
+    verification: <{v2}>
+    3.answer: <{a3}>
+    verification: <{v3}>
+    You should check its verification and reasoning to decide whether it is reasonable. 
+    You should only output add '##answer:' and the most reasonable final numerical answer at the end (digit only). 
+    Do not ouput anything else.
     '''
     return prompt
 
@@ -35,17 +42,22 @@ pipeline = transformers.pipeline(
     model_kwargs={"torch_dtype": torch.bfloat16},
     #device=1,
     device_map="auto",
-    max_length=4096,
+    max_length=5102,
     
 )
 pipeline.tokenizer.pad_token_id=128001
 pipeline.tokenizer.padding_side='left',
 
-data=[]
+file1=[]
+file2=[]
 
-with open("SC/tmp_output2.jsonl", 'r', encoding='utf-8') as file:
+with open(input_file1, 'r', encoding='utf-8') as file:
     for line in file:
-        data.append(json.loads(line.strip()))
+        file1.append(json.loads(line.strip()))
+
+with open(input_file2, 'r', encoding='utf-8') as file:
+    for line in file:
+        file2.append(json.loads(line.strip()))
 
 # 生成输出
 
@@ -53,13 +65,16 @@ questions=[]
 problems=[]
 answers=[]
 # print(data)
-for idx in range(int(len(data)/3)):
-    q1=data[idx*3]["question"]
-    a1=data[idx*3]["answer"]
-    a2=data[idx*3+1]["answer"]
-    a3=data[idx*3+2]["answer"]
+for idx in range(int(len(file1)/3)):
+    q1=file1[idx*3]["question"]
+    a1=file1[idx*3]["answer"]
+    v1=file2[idx*3]["answer"]
+    a2=file1[idx*3+1]["answer"]
+    v2=file2[idx*3+1]["answer"]
+    a3=file1[idx*3+2]["answer"]
+    v3=file2[idx*3+2]["answer"]
 
-    questions.append([{"role":"system","content": "After generating the answer, you should add '##answer:' and the final numerical answer at the end (digit only)"},{"role": "user", "content":tp_prompt(q1,a1,a2,a3)}])
+    questions.append([{"role":"system","content": "After generating the answer, you should add '##answer:' and the final numerical answer at the end (digit only)"}, {"role": "user", "content":tp_prompt(q1,a1,v1,a2,v2,a3,v3)}])
     problems.append(q1)
     answers.append(a1)
 #print(questions)

@@ -7,7 +7,7 @@ def distil(file_name):
         for line in file:
             text=json.loads(line.strip())
             numbers=re.findall(r'\d+', text["answer"])
-            #numbers=re.findall(r'####\s*(\d+)', text["answer"])
+            #numbers=re.findall(r'####\s*(\d+)', text["answer"].replace("##answer:","####"))
             try:
                 number=numbers[-1].strip()
                 outputs.append(number)
@@ -18,7 +18,7 @@ def distil(file_name):
 gt_file="dataset/eval"
 #test_file = "/mnt/workspace/llm/dataset/prp_llama_output"
 #test_file="dataset/baseline_itern_output"
-test_file="/mnt/workspace/llm/SC/SC_output2"
+test_file="SC_prp/data/tmp_output.jsonl"
 gt_numbers=distil(gt_file)
 test_numbers=distil(test_file)
 
