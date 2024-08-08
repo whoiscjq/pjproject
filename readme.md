@@ -21,5 +21,5 @@ bash SC/run.sh
 
 ```
 cd llm
-bash SC_prp/run.sh
+bash SC_prp/myrun.sh
 ```
