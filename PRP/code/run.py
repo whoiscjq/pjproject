@@ -4,10 +4,11 @@ import warnings
 warnings.filterwarnings('ignore')
 import json
 import os
-from pprint import pprint
-import argparse
 from tqdm import tqdm
 import utils, prompt
+
+save_path = os.path.join('prp/result', f'prp_output2.jsonl') # need change
+input_path='dataset/eval.jsonl' # need change
 
 def count_braces(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -26,7 +27,7 @@ with open(f'dataset/eval.jsonl', 'r') as f:
         json_obj=json.loads(line)
         samples.append(json_obj)
 
-save_path = os.path.join('/mnt/workspace/llm/prp/result', f'prp_output2.jsonl')
+
 
 
 problems = [sample.get('question') for sample in samples]
@@ -57,10 +58,27 @@ for problem in tqdm(problems):
     )
 
     process_record['final_answer'] = final_answer
-    with open(save_path, 'a', encoding='utf-8') as f:
+    with open(save_path, 'w', encoding='utf-8') as f:
         pass
     with open(save_path, 'a', encoding='utf-8') as f:
         #f.write(json.dumps(process_record, ensure_ascii=False) + '\n')
         data={"question":problem,"answer":full_answer}
         f.write(json.dumps(data, ensure_ascii=False) + '\n')
-    
+
+
+mydata=[]
+with open(save_path, 'r', encoding='utf-8') as f:
+    for line in f:
+        mydata.append(json.loads(line.strip()))
+
+origindata=[]
+with open(input_path, 'r', encoding='utf-8') as f:
+    for line in f:
+        origindata.append(json.loads(line.strip()))
+
+for i in range(len(mydata)):
+    origindata[i]["model_response"]=mydata[i]["answer"]
+
+with open(input_path, 'w', encoding='utf-8') as f:
+    for data in origindata:
+        f.write(json.dumps(data) + '\n')

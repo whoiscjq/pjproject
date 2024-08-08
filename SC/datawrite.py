@@ -1,7 +1,7 @@
 import json
 
-save_path="baseline_llama_output_wizard.jsonl"
-input_path="eval.jsonl"
+save_path="SC/SC_output.jsonl"
+input_path="dataset/eval.jsonl"
 
 mydata=[]
 with open(save_path, 'r', encoding='utf-8') as f:

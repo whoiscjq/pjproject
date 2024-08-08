@@ -18,7 +18,7 @@ def distil(file_name):
 gt_file="dataset/eval"
 #test_file = "/mnt/workspace/llm/dataset/prp_llama_output"
 #test_file="dataset/baseline_itern_output"
-test_file="SC_prp/data/tmp_output.jsonl"
+test_file="SC_prp/data/PRP_SC_output"
 gt_numbers=distil(gt_file)
 test_numbers=distil(test_file)
 

@@ -34,8 +34,8 @@ count=0
 with open("dataset/eval.jsonl", 'r', encoding='utf-8') as file:
     for line in file:
         #data=[json.loads(line.strip())]
-        count=count+1
-        if count>20: break
+        # count=count+1
+        # if count>: break
         data.append(json.loads(line.strip()))
 
 # 生成输出

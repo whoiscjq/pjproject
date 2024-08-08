@@ -5,28 +5,18 @@ from tqdm import tqdm
 
 model_id = "models/Meta-Llama-3.1-8B-Instruct"
 turn_num=3
-output_file="SC/SC_output2"#".jsonl"
+output_file="SC/SC_output"#".jsonl"
+input_file="SC/tmp_output.jsonl"
 
 def tp_prompt(q,a,b,c):
     prompt=f'''
     questions:{q}
-    Here are several answers for this question. You should check its verification part to decide whether it is reasonable.
+    Here are several answers for this answer, you should output the most rational one:
     1.{a}
     2.{b}
     3.{c}
-    You should check its verification part to decide whether it is reasonable. After that, you should only output add '##answer:' and the most reasonable final numerical answer at the end (digit only), for example(##answer: 5). Do not ouput anything else.
     '''
     return prompt
-
-# def tp_prompt(q,a,b,c):
-#     prompt=f'''
-#     questions:{q}
-#     Here are several answers for this answer, you should output the most rational one:
-#     1.{a}
-#     2.{b}
-#     3.{c}
-#     '''
-#     return prompt
 
 # 加载模型
 pipeline = transformers.pipeline(
@@ -43,7 +33,7 @@ pipeline.tokenizer.padding_side='left',
 
 data=[]
 
-with open("SC/tmp_output2.jsonl", 'r', encoding='utf-8') as file:
+with open(input_file, 'r', encoding='utf-8') as file:
     for line in file:
         data.append(json.loads(line.strip()))
 
