@@ -32,7 +32,7 @@ pipeline = transformers.pipeline(
     model_kwargs={"torch_dtype": torch.bfloat16},
     #device=1,
     device_map="auto",
-    max_length=512,
+    max_length=1024,
     
 )
 pipeline.tokenizer.pad_token_id=128001
@@ -59,7 +59,7 @@ for idx in range(len(file1)):
     problems.append(q1)
     answers.append(a1)
 #print(questions)
-outputs=pipeline(questions,batch_size=256)
+outputs=pipeline(questions,batch_size=64)
 
 
 with open(output_file+".jsonl", 'w', encoding='utf-8') as file:

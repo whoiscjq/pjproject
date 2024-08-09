@@ -6,8 +6,8 @@ def distil(file_name):
     with open(file_name+'.jsonl', 'r', encoding='utf-8') as file:
         for line in file:
             text=json.loads(line.strip())
-            numbers=re.findall(r'\d+', text["answer"])
-            #numbers=re.findall(r'####\s*(\d+)', text["answer"].replace("##answer:","####"))
+            #numbers=re.findall(r'\d+', text["answer"])
+            numbers=re.findall(r'####\s*(\d+)', text["answer"].replace("##answer:","####"))
             try:
                 number=numbers[-1].strip()
                 outputs.append(number)

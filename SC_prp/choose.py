@@ -7,7 +7,7 @@ model_id = "models/Meta-Llama-3.1-8B-Instruct"
 turn_num=3
 input_file1="SC_prp/data/tmp_first_output.jsonl"
 input_file2="SC_prp/data/tmp_veri_output.jsonl"
-output_file="SC_prp/data/tmp_output.jsonl"
+output_file="SC_prp/data/tmp_output"
 
 def tp_prompt(q,a1,v1,a2,v2,a3,v3):
     prompt=f'''
@@ -20,7 +20,7 @@ def tp_prompt(q,a1,v1,a2,v2,a3,v3):
     3.answer: <{a3}>
     verification: <{v3}>
     You should check its verification and reasoning to decide whether it is reasonable. 
-    You should only output add '##answer:' and the most reasonable final numerical answer at the end (digit only). 
+    You should only output add '##answer:' and the most reasonable final numerical answer of the question at the end (digit only). 
     Do not ouput anything else.
     '''
     return prompt
@@ -65,7 +65,7 @@ questions=[]
 problems=[]
 answers=[]
 # print(data)
-for idx in range(int(len(file1)/3)):
+for idx in range(int(len(file2)/3)):
     q1=file1[idx*3]["question"]
     a1=file1[idx*3]["answer"]
     v1=file2[idx*3]["answer"]
@@ -78,7 +78,7 @@ for idx in range(int(len(file1)/3)):
     problems.append(q1)
     answers.append(a1)
 #print(questions)
-outputs=pipeline(questions,batch_size=16)
+outputs=pipeline(questions,batch_size=10)
 
 
 with open(output_file+".jsonl", 'w', encoding='utf-8') as file:

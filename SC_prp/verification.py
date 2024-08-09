@@ -27,7 +27,7 @@ pipeline = transformers.pipeline(
     model=model_id,
     model_kwargs={"torch_dtype": torch.bfloat16},
     device_map="auto",
-    max_length=2048,
+    max_length=1024,
     
 )
 pipeline.tokenizer.pad_token_id=128001
@@ -48,11 +48,15 @@ questions=[]
 answers=[]
 problems=[]
 # print(data)
+countt=1
 for message in data:
         questions.append([{"role": "user", "content":gen_prompt(message["question"],message["answer"])}])
     #questions.append([{"role": "user", "content":message["question"]}])
         answers.append(message["answer"])
         problems.append(message["question"])
+        count=count+1
+        if count>300:
+            break
 
 #print(questions)
 outputs=pipeline(questions,batch_size=64)

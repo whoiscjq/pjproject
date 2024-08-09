@@ -18,7 +18,7 @@ bash SC/run.sh
 
 # SC_prp
 - Before running, you need to change the dataset file path (input_path) in SC_prp/main.py and SC_prp/datawrite.py manually
-
+you may increase the max_length of the model input
 ```
 cd llm
 bash SC_prp/myrun.sh

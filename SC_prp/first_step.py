@@ -23,7 +23,7 @@ pipeline = transformers.pipeline(
     model=model_id,
     model_kwargs={"torch_dtype": torch.bfloat16},
     device_map="auto",
-    max_length=1024,
+    max_length=512,
     
 )
 pipeline.tokenizer.pad_token_id=128001
